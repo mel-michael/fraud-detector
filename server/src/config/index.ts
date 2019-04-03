@@ -6,7 +6,7 @@ export const ENV = {
 
 let config = {
     environment: process.env.NODE_ENV || ENV.dev,
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 5000,
     logging: true
 };
 
