@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
-    HttpClientModule
+    HttpClientModule,
+    // FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
