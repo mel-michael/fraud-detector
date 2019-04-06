@@ -4,7 +4,7 @@
   <h2>Check Transactions </h2>
 
   <div class="col-md-12" style="margin-top: 30px">
-    <form class="form-inline" [formGroup]="appForm" (ngSubmit)="onSearch()">
+    <form class="form-inline" [formGroup]="appForm" (ngSubmit)="searchBy()">
       <div class="form-group">
         <label for="transaction-id">Transaction Id*: </label>
         <input type="text" class="form-control" placeholder="e.g. 9c868b2..." id="transaction-id"
@@ -15,7 +15,10 @@
         <input type="text" class="form-control" id="confidence-level" placeholder="e.g. 1"
           formControlName="confidenceLevel" placeholder="e.g. 0.7">
       </div>
-      <button type="submit" class="btn btn-primary">Search</button>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="margin-right: 30px">Search</button>
+        <button (click)="reset($event)" class="btn btn-info">Reset</button>
+      </div>
       <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
     </form>
   </div>
