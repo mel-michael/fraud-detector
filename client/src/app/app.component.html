@@ -1,14 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1> Welcome to Fraud Detector App </h1>
-  <h2>Check Transactions </h2>
+<div class="container">
+  <h1>Fraud Detector App</h1>
+  <h3>Check Transactions</h3>
 
-  <div class="col-md-12" style="margin-top: 30px">
+  <div class="col-md-12">
     <form class="form-inline" [formGroup]="appForm" (ngSubmit)="searchBy()">
       <div class="form-group">
         <label for="transaction-id">Transaction Id*: </label>
         <input type="text" class="form-control" placeholder="e.g. 9c868b2..." id="transaction-id"
-          formControlName="transactionId"  required>
+          formControlName="transactionId"  required><br/>
+          <small class="form-text text-muted">transaction Id is required.</small>
       </div>
       <div class="form-group">
         <label for="confidence-level">Confidence Level: </label>
@@ -19,12 +20,9 @@
         <button type="submit" class="btn btn-primary" style="margin-right: 30px">Search</button>
         <button (click)="reset($event)" class="btn btn-info">Reset</button>
       </div>
-      <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
     </form>
   </div>
-</div>
 
-<div class="col-md-12">
   <section class="content">
     <div class="table-container">
       <table class="table table-filter">
@@ -62,8 +60,9 @@
       </table>
     </div>
   </section>
+
 </div>
-<!--
+<!-- AG-GRID DATA TABLE
 <div class="col-md-offset-1 col-md-9" style="margin-top: 30px; margin-bottom: 50px">
   <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham" [rowData]="rowData" #agGrid
     [columnDefs]="columnDefs" [gridOptions]="gridOptions">
