@@ -1,0 +1,51 @@
+p {
+  margin: 0;
+}
+
+.form-group {
+  margin-right: 30px;
+}
+
+.form-group input {
+  width: 300px;
+}
+
+/*	--------------------------------------------------
+	:: Table
+	-------------------------------------------------- */
+
+.content {
+  margin: 50px 0;
+}
+
+thead {
+  background-color: #f5f7f7;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+th {
+  line-height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-width: 0;
+  border-right: 1px solid #ccc;
+}
+
+.table-filter {
+  border: 1px solid #ccc;
+}
+
+.table-filter tbody tr:hover {
+  background-color: #eee;
+}
+
+.table-filter tbody tr td {
+  /* padding: 10px; */
+  vertical-align: bottom;
+}
+
+.table-filter tr td:first-child {
+  width: 38px;
+}

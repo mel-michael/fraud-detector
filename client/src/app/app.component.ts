@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AgGridNg2 } from 'ag-grid-angular';
@@ -13,7 +13,7 @@ import DATA from '../transaction-graph';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridNg2;
   title = 'My App';
   searchValue: any;
@@ -27,28 +27,30 @@ export class AppComponent {
 
   columnDefs = [
     { headerName: 'S/N', width: 50,
-      cellRenderer: function(params) { 
+      cellRenderer: function(params) {
         return params.rowIndex + 1;
-      } 
+      }
     },
     { headerName: 'Name', field: 'name' },
     { headerName: 'Email', field: 'email' },
     { headerName: 'Phone', field: 'phone' },
     { headerName: 'Age', field: 'age', width: 80 },
-    { headerName: 'TransactionId', field: 'id' },
+    { headerName: 'Transaction ID', field: 'id' },
     { headerName: 'Connection Type',
-      cellRenderer: function(params) { 
-        if(params.data.connectionInfo)
-          return params.data.connectionInfo.type
+      cellRenderer: function(params) {
+        if (params.data.connectionInfo) {
+          return params.data.connectionInfo.type;
+        }
         return '';
-      } 
+      }
     },
     { headerName: 'Confidence Level', filter: 'agNumberColumnFilter',
-      cellRenderer: function(params) { 
-        if (params.data.connectionInfo)
-          return params.data.connectionInfo.confidence
+      cellRenderer: function(params) {
+        if (params.data.connectionInfo) {
+          return params.data.connectionInfo.confidence;
+        }
         return '';
-      } 
+      }
     },
   ];
 
@@ -64,14 +66,14 @@ export class AppComponent {
     onGridReady: function (event) {
       event.api.sizeColumnsToFit();
     },
-    isExternalFilterPresent: this.isExternalFilterPresent,
-    doesExternalFilterPass: this.doesExternalFilterPass,
+    // isExternalFilterPresent: this.isExternalFilterPresent,
+    // doesExternalFilterPass: this.doesExternalFilterPass,
   };
 
 
   isExternalFilterPresent() {
     // if searchValue is not empty, then we are filtering
-    return this.searchValue != '';
+    return this.searchValue !== '';
   }
 
   doesExternalFilterPass(node) {
@@ -80,7 +82,6 @@ export class AppComponent {
     // console.log()
     return true;
 
-  
     // switch (this.searchValue) {
     //   case 'below30': return node.data.age < 30;
     //   case 'between30and50': return node.data.age >= 30 && node.data.age <= 50;
@@ -96,25 +97,25 @@ export class AppComponent {
     let flat = [];
     items.forEach((el) => {
       if (el.childrens === undefined || el.childrens.length === 0) {
-        return flat.push(el)
+        return flat.push(el);
       }
       // flat.push(el)
       flat = flat.concat(this.flatten(el.childrens));
-    })
+    });
     return flat;
   }
 
   externalFilterChanged() {
     this.searchValue = this.appForm.value;
-    console.log(this.searchValue)
-    this.agGrid.api.onFilterChanged()
+    console.log(this.searchValue);
+    this.agGrid.api.onFilterChanged();
     // this.agGrid.api.setQuickFilter(`${transactionId} ${confidenceLevel}`);
   }
 
   onSearch() {
     this.searchValue = this.appForm.value;
-    console.log(this.searchValue)
-    this.agGrid.api.onFilterChanged()
+    console.log(this.searchValue);
+    this.agGrid.api.onFilterChanged();
     // this.agGrid.api.setQuickFilter(`${transactionId} ${confidenceLevel}`);
   }
 
@@ -122,6 +123,7 @@ export class AppComponent {
     // this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
     // this.rowData = DATA;
     this.rowData = this.flatten(DATA);
+    console.log(DATA);
   }
 
 }

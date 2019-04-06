@@ -1,16 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1> Welcome to Fraud Detector App </h1>
-  <h2>Check for Transactions </h2>
+  <h2>Check Transactions </h2>
 
-  <div class="col-md-12" style="margin-top: 50px">
+  <div class="col-md-12" style="margin-top: 30px">
     <form class="form-inline" [formGroup]="appForm" (ngSubmit)="onSearch()">
-      <div class="form-group" style="margin-right: 30px">
+      <div class="form-group">
         <label for="transaction-id">Transaction Id*: </label>
         <input type="text" class="form-control" placeholder="e.g. 9c868b2..." id="transaction-id"
           formControlName="transactionId"  required>
       </div>
-      <div class="form-group" style="margin-right: 30px">
+      <div class="form-group">
         <label for="confidence-level">Confidence Level: </label>
         <input type="text" class="form-control" id="confidence-level" placeholder="e.g. 1"
           formControlName="confidenceLevel" placeholder="e.g. 0.7">
@@ -21,8 +21,48 @@
   </div>
 </div>
 
-<div class="col-md-12" style="margin-top: 30px">
-  <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="rowData"
-    #agGrid [columnDefs]="columnDefs" [gridOptions]="gridOptions">
-  </ag-grid-angular>
+<div class="col-md-12">
+  <section class="content">
+    <div class="table-container">
+      <table class="table table-filter">
+        <thead>
+          <th *ngFor="let col of columnDefs">{{col.headerName}}</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rowData; let i=index;">
+            <td>
+              <p class="summary">{{i + 1}}</p>
+            </td>
+            <td>
+              <p class="summary">{{row.name}}</p>
+            </td>
+            <td>
+              <p class="summary">{{row.email}}</p>
+            </td>
+            <td>
+              <p class="summary">{{row.phone}}</p>
+            </td>
+            <td>
+              <p class="summary">{{row.age}}</p>
+            </td>
+            <td>
+              <p class="summary">{{row.id}}</p>
+            </td>
+            <td>
+              <p *ngIf="row.connectionInfo" class="summary">{{row.connectionInfo.type}}</p>
+            </td>
+            <td>
+              <p *ngIf="row.connectionInfo" class="summary">{{row.connectionInfo.confidence}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </div>
+<!--
+<div class="col-md-offset-1 col-md-9" style="margin-top: 30px; margin-bottom: 50px">
+  <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham" [rowData]="rowData" #agGrid
+    [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+  </ag-grid-angular>
+</div> -->
