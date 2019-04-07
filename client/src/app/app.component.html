@@ -62,7 +62,7 @@
             <td class="center">
               <div *ngIf="row.connectionInfo">
                 <span [ngClass]="{'secure': row.connectionInfo.confidence > 0.8,
-                  'partially-secure': 0.8 >= row.connectionInfo.confidence > 0.5,
+                  'partially-secure': 0.8 >= row.connectionInfo.confidence && row.connectionInfo.confidence > 0.5,
                   'not-secure': row.connectionInfo.confidence <= 0.5 }">
                   <fa name="lock" size="lg"></fa>{{row.connectionInfo.confidence * 100}}%
                 </span>
