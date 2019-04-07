@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { sampleRouter } from './sample/sample.router';
+import { transactionRouter } from './transaction/transaction.router';
 
 let router = Router();
-router.use('/sample', sampleRouter);
+router.use('/transactions', transactionRouter);
 
-export let apiRouter = router;
+export const apiRouter = router;
 
