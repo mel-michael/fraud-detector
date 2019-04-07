@@ -21,5 +21,5 @@ This app can be used in two different ways:
 
 - `npm run start:prod`: Builds the `client` and `server` projects and starts it with `NODE_ENV=production`. This by default sets `express.static` to `client/dist` to use this node server to serve frontend also.
 
-
+- Visit `localhost:4200` to view the client side and `localhost:5000` for the server side.
 
