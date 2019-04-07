@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AgGridNg2 } from 'ag-grid-angular';
 
-import DATA from '../transaction-graph';
+import { DataService } from '../data.service';
+// import DATA from '../transaction-graph';
 
 @Component({
   selector: 'app-root',
@@ -82,7 +83,7 @@ export class AppComponent implements OnInit {
     // doesExternalFilterPass: this.doesExternalFilterPass,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   // flatten the data set
   flatten(items) {
@@ -138,9 +139,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const transactionData = this.flatten(DATA);
-    this.rowData = transactionData;
-    this.tempData = transactionData; // Sort temp data for client-side filtering
+    this.dataService.fetchTransactions()
+      .subscribe(data => {
+        const transactionData = this.flatten(data);
+        this.rowData = transactionData;
+        this.tempData = transactionData; // Sort temp data for client-side filtering
+        // this.getBusStations()
+        // this.toggleForm();
+        // this.stationForm.reset();
+      }, error => console.error(error));
   }
 
 }
