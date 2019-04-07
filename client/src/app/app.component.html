@@ -9,7 +9,7 @@
         <label for="transaction-id">Transaction Id*: </label>
         <input type="text" class="form-control" placeholder="e.g. 9c868b2..." id="transaction-id"
           formControlName="transactionId"  required><br/>
-          <!-- <small class="form-text text-muted">transaction Id is required.</small> -->
+          <span *ngIf="errorMsg"  class="error">transaction id is required</span>
       </div>
       <div class="form-group">
         <label for="confidence-level">Confidence Level: </label>

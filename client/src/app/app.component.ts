@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   @ViewChild('agGrid')agGrid: AgGridNg2;
   tempData: any;
   rowData: any;
+  errorMsg: Boolean;
 
   appForm = new FormGroup({
     transactionId: new FormControl(''),
@@ -99,10 +100,10 @@ export class AppComponent implements OnInit {
   }
 
   searchBy() {
-    const {transactionId, confidenceLevel} = this.appForm.value;
+    const { transactionId, confidenceLevel } = this.appForm.value;
 
-    if (transactionId === '' && confidenceLevel === '') {
-      this.rowData = this.tempData;
+    if (this.appForm.invalid) {
+      this.errorMsg = true;
       return null;
     }
 
@@ -120,21 +121,15 @@ export class AppComponent implements OnInit {
           if (transactionId && !confidenceLevel && data.id === transactionId) {
             return data;
           }
-          // match only confidence level
-          if (confidenceLevel && !transactionId && data.connectionInfo.confidence > Number(confidenceLevel)) {
-            return data;
-          }
-        }
-        // match only transaction data that doesn't have a confidence level
-        if (data.id === transactionId) {
-          return data;
         }
       });
+    this.errorMsg = false;
   }
 
   reset(event) {
     event.preventDefault();
     this.appForm.reset();
+    this.errorMsg = false;
     this.rowData = this.tempData;
   }
 
@@ -144,9 +139,6 @@ export class AppComponent implements OnInit {
         const transactionData = this.flatten(data);
         this.rowData = transactionData;
         this.tempData = transactionData; // Sort temp data for client-side filtering
-        // this.getBusStations()
-        // this.toggleForm();
-        // this.stationForm.reset();
       }, error => console.error(error));
   }
 
