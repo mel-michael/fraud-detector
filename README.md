@@ -1,10 +1,12 @@
-# Angular-Express-Typescript-Starter
+# Fraud Detector App
 
-A simple starter with frontend using Angular 4+ and API server with NodeJS and Express framework. Typescript is configured for both Frontend and API server.
+An app that help Fraud Officers see transactions and figure out if it is fraudulent or not, depending upon many different parameters.
+
+This app was boostrapped using a simple starter with frontend using Angular 4+ and API server with NodeJS and Express framework. Typescript is configured for both Frontend and API server.
 
 Frontend is created using angular-cli. So we can use all of the angular-cli commands from `client` folder.
 
-This starter can be used in two different ways:
+This app can be used in two different ways:
 1. Separate Frontend and API server.
 2. Both Frontend and API served through single node server in production.
 
