@@ -2,8 +2,24 @@
   padding-top: 50px;
 }
 
-.container h1, .container h3 {
+.center {
   text-align: center;
+}
+
+.secure {
+  color: green;
+}
+
+.partially-secure {
+  color: goldenrod;
+}
+
+.not-secure {
+  color: red;
+}
+
+.summary {
+  color: #999;
 }
 
 /*	--------------------------------------------------

@@ -1,10 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AgGridNg2 } from 'ag-grid-angular';
 
 import { DataService } from '../data.service';
-// import DATA from '../transaction-graph';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +10,6 @@ import { DataService } from '../data.service';
 })
 
 export class AppComponent implements OnInit {
-  @ViewChild('agGrid')agGrid: AgGridNg2;
   tempData: any;
   rowData: any;
   errorMsg: Boolean;
@@ -23,68 +19,18 @@ export class AppComponent implements OnInit {
     confidenceLevel: new FormControl('')
   });
 
-  columnDefs = [
-    {
-      headerName: 'S/N',
-      width: 50,
-      cellRenderer: function (params) {
-        return params.rowIndex + 1;
-      }
-    }, {
-      headerName: 'Name',
-      field: 'name'
-    }, {
-      headerName: 'Email',
-      field: 'email'
-    }, {
-      headerName: 'Phone',
-      field: 'phone'
-    }, {
-      headerName: 'Age',
-      field: 'age',
-      width: 80
-    }, {
-      headerName: 'Transaction ID',
-      field: 'id'
-    }, {
-      headerName: 'Connection Type',
-      cellRenderer: function (params) {
-        if (params.data.connectionInfo) {
-          return params.data.connectionInfo.type;
-        }
-        return '';
-      }
-    }, {
-      headerName: 'Confidence Level',
-      filter: 'agNumberColumnFilter',
-      cellRenderer: function (params) {
-        if (params.data.connectionInfo) {
-          return params.data.connectionInfo.confidence;
-        }
-        return '';
-      }
-    }
+  columns = [
+    { name: 'S/N' },
+    { name: 'Name' },
+    { name: 'Email' },
+    { name: 'Phone' },
+    { name: 'Age' },
+    { name: 'Transaction ID' },
+    { name: 'Connection Type' },
+    { name: 'Confidence Level' }
   ];
 
-  gridOptions = {
-    defaultColDef: {
-      sortable: true,
-      filter: true,
-      resizable: true
-    },
-    columnDefs: this.columnDefs,
-    colWidth: 100,
-    rowSelection: 'single',
-    onGridReady: function (event) {
-      event
-        .api
-        .sizeColumnsToFit();
-    }, // TODO: Use this if Ag-Grid is activated
-    // isExternalFilterPresent: this.isExternalFilterPresent,
-    // doesExternalFilterPass: this.doesExternalFilterPass,
-  };
-
-  constructor(private http: HttpClient, private dataService: DataService) {}
+  constructor(private dataService: DataService) {}
 
   // flatten the data set
   flatten(items) {
@@ -138,7 +84,9 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         const transactionData = this.flatten(data);
         this.rowData = transactionData;
-        this.tempData = transactionData; // Sort temp data for client-side filtering
+        // Store temp data for client-side search
+        // TODO: Remove and move search to Server-side.
+        this.tempData = transactionData;
       }, error => console.error(error));
   }
 

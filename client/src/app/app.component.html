@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
-  <h1>Fraud Detector App</h1>
-  <h3>Check Transactions</h3>
+  <h1 class="center">Fraud Detector App</h1>
+  <h3 class="center">Check Transactions</h3>
 
   <div class="col-md-12">
     <form class="form-inline" [formGroup]="appForm" (ngSubmit)="searchBy()">
@@ -27,7 +27,7 @@
     <div class="table-container">
       <table class="table table-filter">
         <thead>
-          <th *ngFor="let col of columnDefs">{{col.headerName}}</th>
+          <th *ngFor="let col of columns">{{col.name}}</th>
         </thead>
         <tbody>
           <tr *ngFor="let row of rowData; let i=index;">
@@ -49,11 +49,24 @@
             <td>
               <p class="summary">{{row.id}}</p>
             </td>
-            <td>
-              <p *ngIf="row.connectionInfo" class="summary">{{row.connectionInfo.type}}</p>
+            <td class="center">
+              <p *ngIf="row.connectionInfo" class="summary">
+                <span *ngIf="row.connectionInfo.type === 'sameEmail'"><fa name="envelope" size="lg"></fa></span>
+                <span *ngIf="row.connectionInfo.type === 'sameDevice'"><fa name="mobile" size="2x"></fa></span>
+                <span *ngIf="row.connectionInfo.type === 'sameDeviceToken'"><fa name="key" size="lg"></fa></span>
+                <span *ngIf="row.connectionInfo.type === 'samePhoneNumber'"><fa name="phone" size="lg"></fa></span>
+                <span *ngIf="row.connectionInfo.type === 'sameName'"><fa name="id-badge" size="lg"></fa></span>
+                <span *ngIf="row.connectionInfo.type === 'sameGeoInfo'"><fa name="map-marker" size="lg"></fa></span>
+              </p>
             </td>
-            <td>
-              <p *ngIf="row.connectionInfo" class="summary">{{row.connectionInfo.confidence}}</p>
+            <td class="center">
+              <div *ngIf="row.connectionInfo">
+                <span [ngClass]="{'secure': row.connectionInfo.confidence > 0.8,
+                  'partially-secure': 0.8 >= row.connectionInfo.confidence > 0.5,
+                  'not-secure': row.connectionInfo.confidence <= 0.5 }">
+                  <fa name="lock" size="lg"></fa>{{row.connectionInfo.confidence * 100}}%
+                </span>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -62,9 +75,3 @@
   </section>
 
 </div>
-<!-- AG-GRID DATA TABLE
-<div class="col-md-offset-1 col-md-9" style="margin-top: 30px; margin-bottom: 50px">
-  <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham" [rowData]="rowData" #agGrid
-    [columnDefs]="columnDefs" [gridOptions]="gridOptions">
-  </ag-grid-angular>
-</div> -->

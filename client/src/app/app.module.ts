@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { DataService } from '../data.service';
-import { AgGridModule } from 'ag-grid-angular';
-import { HttpClientModule } from '@angular/common/http';
-
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,9 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([]),
     HttpClientModule,
-    // FontAwesomeModule
+    AngularFontAwesomeModule
   ],
   providers : [DataService],
   bootstrap: [AppComponent]
