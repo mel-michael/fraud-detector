@@ -7,15 +7,16 @@ import { appMiddleware, errorHandler } from './middleware';
 
 let app = express();
 
+// TODO: Add to .env
 const MONGO_URL = "mongodb://localhost:27017/";
 
 MongoClient
-.connect(MONGO_URL, { useNewUrlParser: true })
-.then(client => {
-  const db = client.db('detectors');
-  app.locals.connection = db;
-})
-.catch(error => console.error(error));
+  .connect(MONGO_URL, { useNewUrlParser: true })
+  .then(client => {
+    const db = client.db('detectors');
+    app.locals.connection = db;
+  })
+  .catch(error => console.error(error));
 
 app.use(cors());
 app.use(appMiddleware(app));

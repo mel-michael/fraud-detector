@@ -8,7 +8,6 @@ export function appMiddleware(app : Express) {
 	return (req : Request, res : Response, next : NextFunction) => {
 		// Serve static server only in production mode. In any other modes, treat this
 		// as a standalone API server.
-		console.log(config, ENV);
 		if (config.environment === ENV.prod) {
 			app.use(express.static(path.join(__dirname, '../../../../client/dist')));
 		}
