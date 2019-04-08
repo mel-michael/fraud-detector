@@ -28,7 +28,7 @@ This app can be used in two different ways:
 
 - `npm run app-install` to install all dependences
 
-- Ensure you have MongoDB, if not install `mongo`.
+- Ensure you have Mongo installed, if not download and install [here]('https://www.mongodb.com/download-center/community')
 
 ## Commands
 - Run `mongod` to get the mongo instance up and open a way for database connection.
