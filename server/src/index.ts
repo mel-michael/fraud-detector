@@ -4,19 +4,36 @@ import * as cors from 'cors';
 
 import { apiRouter } from './api';
 import { appMiddleware, errorHandler } from './middleware';
+import { default as config, ENV } from './config';
 
 let app = express();
+let MONGO_URL;
 
-// TODO: Add to .env
-const MONGO_URL = "mongodb://localhost:27017/";
+(async function() {
+  // Database Connection URL
+  if (config.environment === ENV.dev) {
+    MONGO_URL = `mongodb://${config.db_host}/${config.db_name}`
+  } else {
+    MONGO_URL = `mongodb://${config.db_user}:${config.db_password}@${config.db_host}/${config.db_name}`;
+  }
 
-MongoClient
-  .connect(MONGO_URL, { useNewUrlParser: true })
-  .then(client => {
-    const db = client.db('detectors');
+  // Database Name
+  const dbName = 'detectors';
+  const client = new MongoClient(MONGO_URL);
+
+  try {
+    // Use connect method to connect to the Server
+    await client.connect();
+    const db = client.db(dbName);
+
+    // Expose Mongo connection globally
     app.locals.connection = db;
-  })
-  .catch(error => console.error(error));
+  } catch (err) {
+    console.log(err.stack);
+  }
+
+})();
+
 
 app.use(cors());
 app.use(appMiddleware(app));
