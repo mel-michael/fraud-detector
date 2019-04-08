@@ -1,5 +1,5 @@
 {
-  "name": "node-ts-app",
+  "name": "fraud-detector-app-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
