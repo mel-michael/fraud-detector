@@ -12,6 +12,10 @@ This app can be used in two different ways:
 
 2. Both Frontend and API served through single node server in production.
 
+## Application View
+
+[!Fraud Detector App Screen shot]("fraud-detector-app-view.png")
+
 ## Technology
 
 - NodeJS
