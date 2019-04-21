@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { DataService } from '../data.service';
+import DATA from '../transaction-graph';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
   // flatten the data set
   flatten(items) {
     let flat = [];
-    items.forEach((el) => {
+    items.forEach(el => {
       if (el.childrens === undefined || el.childrens.length === 0) {
         return flat.push(el);
       }
@@ -80,14 +81,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.fetchTransactions()
-      .subscribe(data => {
-        const transactionData = this.flatten(data);
-        this.rowData = transactionData;
-        // Store temp data for client-side search
-        // TODO: Remove and move search to Server-side.
-        this.tempData = transactionData;
-      }, error => console.error(error));
+    const transactionData = this.flatten(DATA);
+    this.rowData = transactionData;
+    this.tempData = transactionData; // Sort temp data for client-side filtering
+
+    // Disable Data fetch from API
+    // this.dataService.fetchTransactions()
+    //   .subscribe(data => {
+    //     const transactionData = this.flatten(data);
+    //     this.rowData = transactionData;
+    //     // Store temp data for client-side search
+    //     // TODO: Remove and move search to Server-side.
+    //     this.tempData = transactionData;
+    //   }, error => console.error(error));
   }
 
 }
