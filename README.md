@@ -12,10 +12,10 @@ This app can be used in two different ways:
 
 2. Both Frontend and API served through single node server in production.
 
-## Application View
 
+## Application Screenshot
 
-![Fraud Detector App Screen shot]("https://github.com/mel-michael/fraud-detector/blob/master/fraud-detector-app-view.png")
+<img src="https://github.com/mel-michael/fraud-detector/blob/master/fraud-detector-app-view.png" alt="Fraud Detector App View" />
 
 
 ## Technology
