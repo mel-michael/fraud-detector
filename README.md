@@ -14,7 +14,9 @@ This app can be used in two different ways:
 
 ## Application View
 
-[!Fraud Detector App Screen shot]("fraud-detector-app-view.png")
+
+![Fraud Detector App Screen shot]("https://github.com/mel-michael/fraud-detector/blob/master/fraud-detector-app-view.png")
+
 
 ## Technology
 
