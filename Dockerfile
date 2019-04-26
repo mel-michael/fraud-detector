@@ -17,8 +17,11 @@ RUN echo "Copying application files"
 
 COPY . .
 
-RUN npm start
-
-EXPOSE 5000
+# Client port
 EXPOSE 4200
-# EXPOSE 27017
+
+# Server port
+EXPOSE 5000
+
+# Start app
+CMD [ "npm", "start"]
