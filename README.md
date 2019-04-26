@@ -36,6 +36,12 @@ This app can be used in two different ways:
 
 - Ensure you have Mongo installed, if not download and install [here]('https://www.mongodb.com/download-center/community')
 
+## Docker
+
+- Pull image from docker hub by running `docker pull melmichael/fraud-detector-app` 
+
+- Run the docker image. E.g. `docker run -p 4200:4200 -p 5000:5000 melmichael/fraud-detector-app`
+
 ## Commands
 - Run `mongod` to get the mongo instance up and open a way for database connection.
 
